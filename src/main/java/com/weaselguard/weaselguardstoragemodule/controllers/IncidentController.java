@@ -17,20 +17,20 @@ public class IncidentController {
         this.incidentService = incidentService;
     }
 
-    @GetMapping("/incidents")
+    @GetMapping("/incident/get")
     public Iterable<Incident> getIncidents(@RequestParam Optional<Integer> limit) {
         return this.incidentService.getLastIncidents(limit.orElse(5));
     }
 
 
-    @PostMapping("/incident")
+    @PostMapping("/incident/create")
     public Incident createIncident(@RequestBody Incident incident) {
         this.incidentService.createIncident(incident);
         return incident;
     }
 
-    @DeleteMapping("/incident/{id}")
-    public void updateIncident(@PathVariable Long id) {
+    @DeleteMapping("/incident/delete/{id}")
+    public void deleteIncident(@PathVariable Long id) {
        this.incidentService.deleteIncident(id);
     }
 }

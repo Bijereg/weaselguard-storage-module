@@ -17,20 +17,20 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("/events")
+    @GetMapping("/event/get")
     public Iterable<Event> getEvents(@RequestParam Optional<Integer> limit) {
         return this.eventService.getLastEvents(limit.orElse(5));
     }
 
 
-    @PostMapping("/event")
+    @PostMapping("/event/create")
     public Event createEvent(@RequestBody Event event) {
         this.eventService.createEvent(event);
         return event;
     }
 
-    @DeleteMapping("/event/{id}")
-    public void updateEvent(@PathVariable Long id) {
+    @DeleteMapping("/event/delete/{id}")
+    public void deleteEvent(@PathVariable Long id) {
         this.eventService.deleteEvent(id);
     }
 }
