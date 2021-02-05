@@ -7,5 +7,4 @@ public interface IncidentService {
     void createIncident(Incident incident);
     Iterable<Incident> getLastIncidents(int limit);
     void deleteIncident(Long id);
-
 }

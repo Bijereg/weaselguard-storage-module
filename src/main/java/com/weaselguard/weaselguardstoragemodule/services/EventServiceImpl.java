@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-
 @Service
 public class EventServiceImpl implements EventService {
 
@@ -31,7 +30,6 @@ public class EventServiceImpl implements EventService {
     public Iterable<Event> getLastEvents(int limit) {
         return this.eventRepository.findAllByOrderByRegistrationDatetimeDesc(PageRequest.of(0, limit));
     }
-
 
     @Override
     public void deleteEvent(Long id) {

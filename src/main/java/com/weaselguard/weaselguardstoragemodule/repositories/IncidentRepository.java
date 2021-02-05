@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface IncidentRepository extends CrudRepository<Incident, Long> {
+
     List<Incident> findAllByOrderByRegistrationDatetimeDesc(Pageable pageable);
     List<Incident> findByEventsContains(Event event);
     List<Incident> findByAuthor(@Param("author") String author);
