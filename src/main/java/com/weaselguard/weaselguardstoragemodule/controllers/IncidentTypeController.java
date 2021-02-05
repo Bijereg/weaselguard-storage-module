@@ -3,10 +3,7 @@ package com.weaselguard.weaselguardstoragemodule.controllers;
 import com.weaselguard.weaselguardstoragemodule.models.IncidentType;
 import com.weaselguard.weaselguardstoragemodule.services.IncidentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class IncidentTypeController {
@@ -30,7 +27,7 @@ public class IncidentTypeController {
     }
 
     @DeleteMapping("/incident_type/delete/{id}")
-    public void deleteIncidentType(Long id) {
+    public void deleteIncidentType(@PathVariable Long id) {
         this.incidentTypeService.deleteIncidentType(id);
     }
 }
