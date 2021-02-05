@@ -1,5 +1,16 @@
 # WeaselGuard Storage Module
 
+## Table of Contents
+- [1. Configuration](#1-configuration)
+  - [1.1. Database configuration](#11-database-configuration)
+  - [1.2. Application configuration](#12-application-configuration)
+- [2. How to run](#2-how-to-run)
+  - [2.1. Running with mvnw](#21-running-with-mvnw)
+  - [2.2. Running with third-party server](#22-running-with-third-party-server-apache-tomcat)
+- [3. Using WeaselGuard Storage Module](#3-using-weaselguard-storage-module)
+  - [3.1. Model Structure](#31-model-structure)
+  - [3.2. API endpoints](#32-api-endpoints)
+
 ## 1. Configuration
 Open file `src/main/resources/application.properties` and edit settings.
 
@@ -76,7 +87,7 @@ There are 3 models: Event, Incident and IncidentType.
 | modifyingDatetime | LocalDateTime | Date and time in format `yyyy-MM-dd HH:mm:ss` of last incident modifying |
 | responseDatetime | LocalDateTime | Date and time in format `yyyy-MM-dd HH:mm:ss` when security administrator respond on incident |
 | author | String | Name of security administrator who created this incident or name of a correlation engine |
-| accuracy | ACCURACY | Confidence level. Allowed values: `TRUE, ATTEMPT, DOUBT` |
+| accuracy | ACCURACY (enum) | Confidence level. Allowed values: `TRUE, ATTEMPT, DOUBT` |
 | comment | String | Comment of security administrator (just for humans) |
 | type | IncidentType | Class (type) of an incident. For example: `Malware`, `Unauthorized Access` |
 | events | List\<Event\> | List of events which constructed this incident |
