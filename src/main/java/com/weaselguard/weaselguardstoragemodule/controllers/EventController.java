@@ -3,7 +3,9 @@ package com.weaselguard.weaselguardstoragemodule.controllers;
 import com.weaselguard.weaselguardstoragemodule.models.Event;
 import com.weaselguard.weaselguardstoragemodule.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -27,6 +29,15 @@ public class EventController {
     public Event createEvent(@RequestBody Event event) {
         this.eventService.createEvent(event);
         return event;
+    }
+
+    @PostMapping("/event/{id}/comment")
+    public void addComment(@PathVariable Long id, @RequestBody String comment) {
+        try {
+            this.eventService.addComment(id, comment);
+        } catch (IllegalArgumentException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }
     }
 
     @DeleteMapping("/event/delete/{id}")

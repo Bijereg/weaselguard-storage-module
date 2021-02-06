@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class IncidentServiceImpl implements IncidentService {
@@ -24,6 +25,19 @@ public class IncidentServiceImpl implements IncidentService {
             incident.setRegistrationDatetime(LocalDateTime.now());
         }
         this.incidentRepository.save(incident);
+    }
+
+    @Override
+    public void addComment(Long id, String comment) {
+        Optional<Incident> incident = this.incidentRepository.findById(id);
+        if (incident.isEmpty()) {
+            throw new IllegalArgumentException("There is no incident with id = " + id);
+        }
+        else {
+            Incident i = incident.get();
+            i.setComment(comment);
+            this.incidentRepository.save(i);
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -24,6 +25,19 @@ public class EventServiceImpl implements EventService {
             event.setRegistrationDatetime(LocalDateTime.now());
         }
         this.eventRepository.save(event);
+    }
+
+    @Override
+    public void addComment(Long id, String comment) throws IllegalArgumentException {
+        Optional<Event> event = this.eventRepository.findById(id);
+        if (event.isEmpty()) {
+            throw new IllegalArgumentException("There is no event with id = " + id);
+        }
+        else {
+            Event e = event.get();
+            e.setComment(comment);
+            this.eventRepository.save(e);
+        }
     }
 
     @Override
