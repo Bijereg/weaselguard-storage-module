@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
 
-    List<Event> findBySourceAddress(@Param("sourceAddress") String sourceAddress);
-    List<Event> findByPriority(@Param("priority") Event.PRIORITY priority);
-    List<Event> findAllByOrderByRegistrationDatetimeDesc(Pageable pageable);
+    List<Event> findBySourceHost(@Param("sourceHost") String sourceHost);
+    List<Event> findBySeverity(@Param("severity") Event.SEVERITY priority);
+    List<Event> findByFacility(@Param("facility") int facility);
+    List<Event> findAllByOrderByRegistrationDatetimeDescIdDesc(Pageable pageable);
 }

@@ -42,7 +42,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Iterable<Event> getLastEvents(int limit) {
-        return this.eventRepository.findAllByOrderByRegistrationDatetimeDesc(PageRequest.of(0, limit));
+        return this.eventRepository.findAllByOrderByRegistrationDatetimeDescIdDesc(PageRequest.of(0, limit));
     }
 
     @Override

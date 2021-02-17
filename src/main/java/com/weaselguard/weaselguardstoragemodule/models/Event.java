@@ -19,19 +19,22 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sourceAddress;
+    private String sourceHost;
     private String sourceApplication;
     private String protocol;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registrationDatetime;
-    private PRIORITY priority;
+    private SEVERITY severity;
+    private int facility;
+    @Lob
     private String message;
+    @Lob
     private String comment;
 
     @ManyToMany
     private List<Incident> incidents;
 
-    public enum PRIORITY {
+    public enum SEVERITY {
         EMERG,
         ALERT,
         CRIT,
@@ -39,7 +42,6 @@ public class Event {
         WARNING,
         NOTICE,
         INFO,
-        DEBUG,
-        OTHER
+        DEBUG
     }
 }
