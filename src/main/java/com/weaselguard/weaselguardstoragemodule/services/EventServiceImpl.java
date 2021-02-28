@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -42,6 +43,9 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Iterable<Event> getLastEvents(int limit) {
+        if (limit < 1) {
+            return new ArrayList<>();
+        }
         return this.eventRepository.findAllByOrderByRegistrationDatetimeDescIdDesc(PageRequest.of(0, limit));
     }
 
